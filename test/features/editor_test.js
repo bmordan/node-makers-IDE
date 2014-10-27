@@ -52,4 +52,18 @@ describe('editor page', function() {
       })
     });
   });
+
+  describe('navigation', function() {
+    before(function(done) {
+      browser.visit('/edit?file=_test.txt', done);
+    });
+
+    it('you can return home', function() {
+      browser.clickLink('',function(){
+        expect(browser.text('h1')).to.eql('Welcome to Makers IDE')
+      })
+      
+    });
+
+  });
 });
