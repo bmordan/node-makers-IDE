@@ -11,7 +11,7 @@ describe('home page', function() {
     this.server = server.listen(3000);
     // initialize the browser using the same port as the test application
     browser = new Browser({ site: 'http://localhost:3000' });
-    fs.writeFile('code/_test.txt', 'Lorem ipsum');
+    fs.writeFile('code/_test.txt', 'Bally High');
   });
 
   before(function(done) {
@@ -26,6 +26,10 @@ describe('home page', function() {
     expect(browser.text('h1')).to.eql('Welcome to Makers IDE');
   });
 
+  it('should display the names of the files it found', function(){
+    expect(browser.text('nav.files a:nth-child(2)')).to.eql('example.js')
+  });
+
   it('should show a file picker', function(){
     expect(browser.text('.files a:first-child')).to.eql('_test.txt');
   });
@@ -35,4 +39,6 @@ describe('home page', function() {
       expect(browser.location.pathname).to.eql('/edit?file=_test.txt');
     })
   });
+
+  
 });

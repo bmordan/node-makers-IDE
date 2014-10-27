@@ -12,8 +12,12 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response){
   fs.readdir('code', function(err, files) {
-    response.render('index', { files: files })
-  })
+    if(files.length < 1){
+      response.render('index', { files: ['This directory is empty'] });
+    } else {
+      response.render('index', { files: files });  
+    }
+  });
 });
 
 app.get('/edit', function(request, response){
